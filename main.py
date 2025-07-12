@@ -5,17 +5,19 @@
 import numpy as np
 
 # Training settings
-epochs = 100000
+epochs = 1000000
 learning_rate = 0.01
 loss_history = []
 
 # Activation function
 def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+    return np.tanh(x)
+    # return 1 / (1 + np.exp(-x))
 
 # Derivative of sigmoid
 def sigmoid_derivative(s):
-    return s * (1 - s)
+    return 1 - s ** 2
+    # return s * (1 - s)
 
 def binary_cross_entropy(y_true, y_pred):
     y_pred = np.clip(y_pred, 1e-10, 1 - 1e-10)  # avoid log(0)
@@ -58,7 +60,7 @@ np.random.seed(42)
 
 # Step 1 : setting up input and output data
 
-X = np.array([[0, 0],[0, 1],[1, 0],[1, 1]]) # 2 input feature
+X = np.array([[0, 0],[0, 1],[1, 0],[1, 1],]) # 2 input feature
 y = np.array([[0], [1], [1], [0]])
 
 # Step 2 : initialize weight, from my understanding it's input layer and hidden layer
